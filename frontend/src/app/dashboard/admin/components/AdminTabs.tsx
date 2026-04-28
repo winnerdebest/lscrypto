@@ -1,0 +1,1 @@
+export default function AdminTabs({ tabs, activeTab, onTabChange }: any) { return <div>Admin Tabs</div>; }

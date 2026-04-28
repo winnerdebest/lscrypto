@@ -1,0 +1,2 @@
+web: gunicorn lscrypto.wsgi --log-file -
+worker: celery -A lscrypto worker --loglevel=info

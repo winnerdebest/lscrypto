@@ -1,0 +1,15 @@
+Django>=4.2,<6.1
+djangorestframework
+djangorestframework-simplejwt
+celery
+redis
+django-environ
+requests
+drf-yasg
+google-auth
+django-cors-headers
+resend
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary
