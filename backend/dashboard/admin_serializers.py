@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from payments.models import Transaction, Withdrawal
-from investments.models import UserInvestment, InvestmentPlan
+from investments.models import BotDeployment, AITradingTier
 
 User = get_user_model()
 
@@ -26,19 +26,19 @@ class WithdrawalSerializer(serializers.ModelSerializer):
         model = Withdrawal
         fields = ['id', 'user', 'user_email', 'user_username', 'coin', 'amount', 'wallet_address', 'status', 'created_at']
 
-class UserInvestmentSerializer(serializers.ModelSerializer):
+class BotDeploymentSerializer(serializers.ModelSerializer):
     user_email = serializers.CharField(source='user.email', read_only=True)
     user_username = serializers.CharField(source='user.username', read_only=True)
-    plan_name = serializers.CharField(source='plan.name', read_only=True)
+    tier_name = serializers.CharField(source='tier.name', read_only=True)
     
     class Meta:
-        model = UserInvestment
-        fields = ['id', 'user', 'user_email', 'user_username', 'plan', 'plan_name', 'amount', 'coin', 'start_date', 'expected_return', 'status']
+        model = BotDeployment
+        fields = ['id', 'user', 'user_email', 'user_username', 'tier', 'tier_name', 'amount', 'coin', 'start_date', 'status']
 
-class InvestmentPlanSerializer(serializers.ModelSerializer):
+class AITradingTierSerializer(serializers.ModelSerializer):
     class Meta:
-        model = InvestmentPlan
-        fields = ['id', 'name', 'roi_percentage', 'duration_days', 'minimum_amount']
+        model = AITradingTier
+        fields = ['id', 'name', 'target_apy_range', 'max_portfolio_size', 'minimum_amount']
 
 class AdminStatsSerializer(serializers.Serializer):
     total_users = serializers.IntegerField()

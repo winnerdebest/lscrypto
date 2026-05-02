@@ -1,12 +1,19 @@
 from django.contrib import admin
-from .models import InvestmentPlan, UserInvestment
+from .models import AITradingTier, BotDeployment, TradeExecutionLog, DailyPerformance
 
-@admin.register(InvestmentPlan)
-class InvestmentPlanAdmin(admin.ModelAdmin):
-    list_display = ('name', 'roi_percentage', 'duration_days', 'minimum_amount')
+@admin.register(AITradingTier)
+class AITradingTierAdmin(admin.ModelAdmin):
+    list_display = ('name', 'target_apy_range', 'minimum_amount', 'max_portfolio_size')
 
-@admin.register(UserInvestment)
-class UserInvestmentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'plan', 'amount', 'coin', 'expected_return', 'status', 'start_date')
-    list_filter = ('status', 'plan', 'coin')
-    search_fields = ('user__email', 'user__username')
+@admin.register(BotDeployment)
+class BotDeploymentAdmin(admin.ModelAdmin):
+    list_display = ('user', 'tier', 'amount', 'coin', 'status', 'start_date')
+    list_filter = ('status', 'coin', 'tier')
+
+@admin.register(TradeExecutionLog)
+class TradeExecutionLogAdmin(admin.ModelAdmin):
+    list_display = ('coin_pair', 'action', 'price', 'profit_percentage', 'timestamp')
+
+@admin.register(DailyPerformance)
+class DailyPerformanceAdmin(admin.ModelAdmin):
+    list_display = ('tier', 'date', 'roi_percentage')

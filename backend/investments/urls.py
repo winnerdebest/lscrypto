@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import InvestmentPlanListView, UserInvestmentListView
+from .views import AITradingTierListView, BotDeploymentListView, TradeExecutionLogListView
 
 urlpatterns = [
-    path('plans/', InvestmentPlanListView.as_view(), name='plan-list'),
-    path('my-investments/', UserInvestmentListView.as_view(), name='my-investments'),
+    path('tiers/', AITradingTierListView.as_view(), name='tier-list'),
+    path('deployments/', BotDeploymentListView.as_view(), name='my-deployments'),
+    path('live-trades/', TradeExecutionLogListView.as_view(), name='live-trades'),
 ]

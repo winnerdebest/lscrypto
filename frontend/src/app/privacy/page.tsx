@@ -38,7 +38,7 @@ export default function PrivacyPage() {
           <div className="space-y-12">
             <div className="glass-card p-8 md:p-12 prose prose-invert max-w-none">
               <p className="text-lg leading-relaxed text-[var(--text-secondary)] mb-8">
-                At CryptoVault, we are committed to protecting your privacy and ensuring the security of your digital assets. This policy outlines how we handle your data and your rights as a user of our platform.
+                At Inc., we are committed to protecting your privacy and ensuring the security of your digital assets. This policy outlines how we handle your data and your rights as a user of our platform.
               </p>
 
               {sections.map((section, i) => (

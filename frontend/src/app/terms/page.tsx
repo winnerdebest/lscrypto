@@ -6,7 +6,7 @@ export default function TermsPage() {
   const sections = [
     {
       title: '1. Acceptance of Terms',
-      content: 'By accessing or using CryptoVault, you agree to be bound by these Terms of Service. If you do not agree to all terms, you may not use our services.'
+      content: 'By accessing or using Inc., you agree to be bound by these Terms of Service. If you do not agree to all terms, you may not use our services.'
     },
     {
       title: '2. Eligibility',
@@ -18,7 +18,7 @@ export default function TermsPage() {
     },
     {
       title: '4. Account Security',
-      content: 'You are responsible for maintaining the confidentiality of your account credentials. CryptoVault is not liable for any loss resulting from unauthorized access to your account due to your failure to secure your credentials.'
+      content: 'You are responsible for maintaining the confidentiality of your account credentials. Inc. is not liable for any loss resulting from unauthorized access to your account due to your failure to secure your credentials.'
     },
     {
       title: '5. Termination',
@@ -38,7 +38,7 @@ export default function TermsPage() {
           <div className="space-y-12">
             <div className="glass-card p-8 md:p-12 prose prose-invert max-w-none">
               <p className="text-lg leading-relaxed text-[var(--text-secondary)] mb-8">
-                Welcome to CryptoVault. These Terms of Service govern your use of our website and services. Please read them carefully before proceeding.
+                Welcome to Inc.. These Terms of Service govern your use of our website and services. Please read them carefully before proceeding.
               </p>
 
               {sections.map((section, i) => (

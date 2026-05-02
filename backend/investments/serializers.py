@@ -1,15 +1,20 @@
 from rest_framework import serializers
-from .models import InvestmentPlan, UserInvestment
+from .models import AITradingTier, BotDeployment, TradeExecutionLog
 
-class InvestmentPlanSerializer(serializers.ModelSerializer):
+class AITradingTierSerializer(serializers.ModelSerializer):
     class Meta:
-        model = InvestmentPlan
+        model = AITradingTier
         fields = '__all__'
 
-class UserInvestmentSerializer(serializers.ModelSerializer):
-    plan_details = InvestmentPlanSerializer(source='plan', read_only=True)
+class BotDeploymentSerializer(serializers.ModelSerializer):
+    tier_details = AITradingTierSerializer(source='tier', read_only=True)
 
     class Meta:
-        model = UserInvestment
-        fields = ['id', 'plan', 'plan_details', 'amount', 'coin', 'start_date', 'expected_return', 'status']
-        read_only_fields = ['expected_return', 'status', 'start_date']
+        model = BotDeployment
+        fields = ['id', 'tier', 'tier_details', 'amount', 'amount_usd', 'coin', 'start_date', 'status']
+        read_only_fields = ['status', 'start_date']
+
+class TradeExecutionLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TradeExecutionLog
+        fields = '__all__'

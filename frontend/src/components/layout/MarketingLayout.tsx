@@ -18,7 +18,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
   ];
 
   return (
-    <div className="min-h-screen flex flex-col selection:bg-[var(--accent-primary)] selection:text-[#080B14]">
+    <div className="min-h-screen flex flex-col selection:bg-[var(--accent-primary)] selection:text-[#080B14] overflow-x-hidden w-full relative">
       {/* Dynamic Background */}
       <div className="fixed inset-0 z-[-1] pointer-events-none">
         <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[var(--accent-primary)] rounded-full blur-[150px] opacity-[0.03] animate-pulse-slow"></div>
@@ -30,12 +30,12 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         <div className="px-6 md:px-8 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="w-8 h-8 rounded-lg bg-[var(--gradient-brand)] flex items-center justify-center p-[1px]">
-              <div className="w-full h-full bg-[#080B14] rounded-[7px] flex items-center justify-center">
-                <span className="text-lg font-heading font-black text-white">C</span>
+              <div className="w-full h-full bg-[#000000] rounded-[7px] flex items-center justify-center">
+                <span className="text-lg font-heading font-black text-white">I</span>
               </div>
             </div>
             <span className="text-xl font-heading font-bold tracking-tight text-white group-hover:text-[var(--accent-primary)] transition-colors">
-              CryptoVault
+              Inc.
             </span>
           </Link>
 
@@ -96,7 +96,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       </header>
       
       {/* Fixed Bottom Price Ticker */}
-      <div className="fixed bottom-0 left-0 w-full z-40 bg-[#080B14]/80 backdrop-blur-md border-t border-[var(--border-glass)] hidden md:block">
+      <div className="fixed bottom-0 left-0 w-full z-40 bg-[#000000]/80 backdrop-blur-md border-t border-[var(--border-glass)] hidden md:block">
         <PriceTicker />
       </div>
 
@@ -105,12 +105,12 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       </main>
 
       {/* Premium Footer */}
-      <footer className="bg-[#0A0D18] border-t border-[var(--border-glass)] pt-20 pb-10 px-6">
+      <footer className="bg-[#030508] border-t border-[var(--border-glass)] pt-20 pb-10 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div className="space-y-6">
               <Link href="/" className="flex items-center space-x-2">
-                <span className="text-2xl font-heading font-bold text-white">CryptoVault</span>
+                <span className="text-2xl font-heading font-bold text-white">Inc.</span>
               </Link>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed max-w-xs">
                 The world's most sophisticated automated crypto investment platform. Engineered for security, designed for wealth.
@@ -161,7 +161,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           </div>
 
           <div className="pt-8 border-t border-[var(--border-glass)] flex flex-col md:flex-row justify-between items-center text-xs text-[var(--text-muted)]">
-            <p>© {new Date().getFullYear()} CryptoVault Global Ltd. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Inc. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <span>FCA Regulated</span>
               <span>SIPC Insured up to $500k</span>

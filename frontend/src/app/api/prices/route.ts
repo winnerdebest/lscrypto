@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const response = await fetch('https://api.coinlore.net/api/tickers/?start=0&limit=20', {
+    const response = await fetch('https://api.coinlore.net/api/tickers/?start=0&limit=100', {
       next: { revalidate: 30 }, // Cache for 30 seconds
     });
     
@@ -31,6 +31,10 @@ export async function GET() {
         { id: 'tether', symbol: 'USDT', name: 'Tether', priceUsd: '1', changePercent24Hr: '0' },
         { id: 'solana', symbol: 'SOL', name: 'Solana', priceUsd: '145', changePercent24Hr: '5.2' },
         { id: 'binancecoin', symbol: 'BNB', name: 'BNB', priceUsd: '590', changePercent24Hr: '-0.5' },
+        { id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin', priceUsd: '0.15', changePercent24Hr: '8.4' },
+        { id: 'shiba-inu', symbol: 'SHIB', name: 'Shiba Inu', priceUsd: '0.000025', changePercent24Hr: '12.1' },
+        { id: 'pepe', symbol: 'PEPE', name: 'Pepe', priceUsd: '0.000008', changePercent24Hr: '15.3' },
+        { id: 'dogwifhat', symbol: 'WIF', name: 'dogwifhat', priceUsd: '2.5', changePercent24Hr: '20.5' }
       ]
     });
   }

@@ -14,17 +14,17 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <Link href="/" className="flex items-center space-x-3 group w-fit hover:scale-105 transition-transform">
             <div className="w-12 h-12 rounded-xl bg-[var(--gradient-brand)] flex items-center justify-center p-[1px]">
               <div className="w-full h-full bg-[#080B14] rounded-[11px] flex items-center justify-center">
-                <span className="text-2xl font-heading font-black text-white">C</span>
+                <span className="text-2xl font-heading font-black text-white">I</span>
               </div>
             </div>
             <span className="text-3xl font-heading font-bold tracking-tight text-white group-hover:text-[var(--accent-primary)] transition-colors">
-              CryptoVault
+              Inc.
             </span>
           </Link>
           
           <div className="space-y-6">
             <h2 className="text-4xl xl:text-5xl font-heading font-bold leading-tight">
-              Institutional wealth tools,<br/>
+              Algorithmic execution engine,<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)]">now in your hands.</span>
             </h2>
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
@@ -52,10 +52,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-lg bg-[var(--gradient-brand)] flex items-center justify-center p-[1px]">
               <div className="w-full h-full bg-[#080B14] rounded-[7px] flex items-center justify-center">
-                <span className="text-lg font-heading font-black text-white">C</span>
+                <span className="text-lg font-heading font-black text-white">I</span>
               </div>
             </div>
-            <span className="text-xl font-heading font-bold text-white">CryptoVault</span>
+            <span className="text-xl font-heading font-bold text-white">Inc.</span>
           </Link>
         </div>
 

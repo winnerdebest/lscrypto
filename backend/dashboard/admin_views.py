@@ -5,10 +5,10 @@ from django.contrib.auth import get_user_model
 from django.db.models import Sum, Count
 from accounts.models import Balance
 from payments.models import Transaction, Withdrawal
-from investments.models import UserInvestment, InvestmentPlan
+from investments.models import BotDeployment, AITradingTier
 from .admin_serializers import (
     UserListSerializer, TransactionSerializer, WithdrawalSerializer,
-    UserInvestmentSerializer, InvestmentPlanSerializer, AdminStatsSerializer
+    BotDeploymentSerializer, AITradingTierSerializer, AdminStatsSerializer
 )
 from accounts.serializers import UserSerializer
 
@@ -27,7 +27,7 @@ class AdminStatsView(APIView):
         total_withdrawals = Withdrawal.objects.filter(status='completed').aggregate(total=Sum('amount'))['total'] or 0
         pending_withdrawals = Withdrawal.objects.filter(status='pending').count()
         pending_kyc = User.objects.filter(kyc_status='pending').count()
-        active_investments = UserInvestment.objects.filter(status='active').count()
+        active_deployments = BotDeployment.objects.filter(status='active').count()
         
         return Response({
             'total_users': total_users,
@@ -35,7 +35,7 @@ class AdminStatsView(APIView):
             'total_withdrawals': str(total_withdrawals),
             'pending_withdrawals': pending_withdrawals,
             'pending_kyc': pending_kyc,
-            'active_investments': active_investments,
+            'active_investments': active_deployments,
         })
 
 class UserManagementView(generics.ListAPIView):
@@ -102,18 +102,18 @@ class ProcessWithdrawalView(APIView):
 
 class InvestmentManagementView(generics.ListAPIView):
     permission_classes = (permissions.IsAdminUser,)
-    serializer_class = UserInvestmentSerializer
-    queryset = UserInvestment.objects.all().order_by('-start_date')
+    serializer_class = BotDeploymentSerializer
+    queryset = BotDeployment.objects.all().order_by('-start_date')
 
 class InvestmentPlanView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAdminUser,)
-    serializer_class = InvestmentPlanSerializer
-    queryset = InvestmentPlan.objects.all()
+    serializer_class = AITradingTierSerializer
+    queryset = AITradingTier.objects.all()
 
 class InvestmentPlanDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAdminUser,)
-    serializer_class = InvestmentPlanSerializer
-    queryset = InvestmentPlan.objects.all()
+    serializer_class = AITradingTierSerializer
+    queryset = AITradingTier.objects.all()
 
 class UserBalancesView(generics.ListAPIView):
     permission_classes = (permissions.IsAdminUser,)

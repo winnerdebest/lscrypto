@@ -13,6 +13,9 @@ export function useCryptoPrices() {
     BTC: { id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin', price: 0, change24h: 0 },
     ETH: { id: 'ethereum', symbol: 'ETH', name: 'Ethereum', price: 0, change24h: 0 },
     USDT: { id: 'tether', symbol: 'USDT', name: 'Tether', price: 1, change24h: 0 },
+    DOGE: { id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin', price: 0, change24h: 0 },
+    PEPE: { id: 'pepe', symbol: 'PEPE', name: 'Pepe', price: 0, change24h: 0 },
+    SHIB: { id: 'shiba-inu', symbol: 'SHIB', name: 'Shiba Inu', price: 0, change24h: 0 },
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

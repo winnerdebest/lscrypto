@@ -1,50 +1,65 @@
 from celery import shared_task
 from django.utils import timezone
 from decimal import Decimal
-from .models import UserInvestment
+import random
+from .models import BotDeployment, DailyPerformance, TradeExecutionLog
 from accounts.models import Balance
 from payments.models import Transaction
 
 @shared_task
-def process_daily_roi():
-    active_investments = UserInvestment.objects.filter(status='active')
+def simulate_live_trades():
+    # Simulate a trade log every few minutes
+    coins = ['PEPE/USDT', 'DOGE/USDT', 'WIF/USDT', 'SHIB/USDT', 'BTC/USDT', 'ETH/USDT', 'SOL/USDT']
+    actions = ['BUY', 'SELL']
     
-    for investment in active_investments:
-        plan = investment.plan
-        if not plan:
+    action = random.choice(actions)
+    coin_pair = random.choice(coins)
+    
+    # Fake a price depending on the coin to be somewhat realistic but not exactly accurate
+    price = Decimal(str(random.uniform(0.000001, 100.0)))
+    
+    profit_percentage = None
+    if action == 'SELL':
+        profit_percentage = Decimal(str(random.uniform(1.0, 25.0)))
+        
+    TradeExecutionLog.objects.create(
+        coin_pair=coin_pair,
+        action=action,
+        price=price,
+        profit_percentage=profit_percentage
+    )
+
+@shared_task
+def process_daily_roi():
+    active_deployments = BotDeployment.objects.filter(status='active')
+    
+    for deployment in active_deployments:
+        tier = deployment.tier
+        if not tier:
             continue
             
-        daily_roi = investment.amount * plan.roi_percentage / Decimal('100')
+        # Get or create today's performance for this tier
+        today = timezone.now().date()
+        performance, created = DailyPerformance.objects.get_or_create(
+            tier=tier,
+            date=today,
+            defaults={'roi_percentage': Decimal(str(random.uniform(0.5, 3.5)))} # Simulated 0.5% - 3.5% daily
+        )
+            
+        daily_roi = deployment.amount * performance.roi_percentage / Decimal('100')
         
         balance, created = Balance.objects.get_or_create(
-            user=investment.user,
-            coin=investment.coin,
+            user=deployment.user,
+            coin=deployment.coin,
             defaults={'amount': Decimal('0.0')}
         )
         balance.amount += daily_roi
         balance.save()
         
         Transaction.objects.create(
-            user=investment.user,
+            user=deployment.user,
             transaction_type='roi',
-            coin=investment.coin,
+            coin=deployment.coin,
             amount=daily_roi,
             status='completed'
         )
-        
-        days_passed = (timezone.now() - investment.start_date).days
-        if days_passed >= plan.duration_days:
-            investment.status = 'completed'
-            investment.save()
-            
-            # Return capital
-            balance.amount += investment.amount
-            balance.save()
-            
-            Transaction.objects.create(
-                user=investment.user,
-                transaction_type='roi', # Using roi as type for capital return to fit existing choices
-                coin=investment.coin,
-                amount=investment.amount,
-                status='completed'
-            )

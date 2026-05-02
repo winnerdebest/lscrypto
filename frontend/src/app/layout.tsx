@@ -17,8 +17,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CryptoVault",
-  description: "Premium Crypto Investment Platform",
+  title: "Inc.",
+  description: "AI Algorithmic Trading Engine",
 };
 
 export default function RootLayout({
